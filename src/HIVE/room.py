@@ -1,5 +1,11 @@
+"""
+Esta classe representa determinado comodo, possui uma lista de sensores 
+e uma lista de atuadores
 
+"""
 
+import math
+import numpy
 
 class Room():
 
@@ -41,7 +47,6 @@ class Room():
     def getActuators(self):
         return self.__actuatorsDta
 
-    @property
-    def readFile(self, file):
-        return file.read()
+
+
 
