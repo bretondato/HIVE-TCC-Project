@@ -116,6 +116,12 @@ if __name__ == '__main__':
     for u in range(0, len(lines) - 2):
 
         if (lines[u][23] == 'i'):
+
+            if i.getName() == '':
+                i.setName(lines[u][23])
+            else:
+                pass
+
             #i = room.Room()
             #i.setName(lines[u][23])
             #i.setSensorsDta(lines, u)
@@ -124,6 +130,11 @@ if __name__ == '__main__':
 
 
         if (lines[u][23] == 'S'):
+            if s.getName() == '':
+                s.setName(lines[u][23])
+            else:
+                pass
+
             #s = room.Room()
             #s.setName(lines[u][23])
             #s.setSensorsDta(lines, u)
@@ -131,6 +142,11 @@ if __name__ == '__main__':
             pass
 
         if (lines[u][23] == 'a'):
+            if a.getName() == '':
+                a.setName(lines[u][23])
+            else:
+                pass
+
             #a = room.Room()
             #a.setName(lines[u][23])
             #a.setSensorsDta(lines, u)
@@ -138,6 +154,11 @@ if __name__ == '__main__':
             somInBuilder(lines, u, somInput_i)
 
         if (lines[u][23] == 'c'):
+            if c.getName() == '':
+                c.setName(lines[u][23])
+            else:
+                pass
+
             #c = room.Room()
             #c.setName(lines[u][23])
             #c.setSensorsDta(lines, u)
@@ -145,6 +166,11 @@ if __name__ == '__main__':
             pass
 
         if (lines[u][23] == 'V'):
+            if v.getName() == '':
+                v.setName(lines[u][23])
+            else:
+                pass
+
             #v = room.Room()
             #v.setName(lines[u][23])
             #v.setSensorsDta(lines, u)
@@ -152,6 +178,11 @@ if __name__ == '__main__':
             pass
 
         if (lines[u][23] == 'b'):
+            if b.getName() == '':
+                b.setName(lines[u][23])
+            else:
+                pass
+
             #b = room.Room()
             #b.setName(lines[u][23])
             #b.setSensorsDta(lines, u)
@@ -160,7 +191,7 @@ if __name__ == '__main__':
 
 
     #i.printData()
-    print(i.getName())
-    print(a.getName())
     print(somInput_i)
+    print(i.getTimeRange())
+    print(i.getName())
 

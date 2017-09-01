@@ -6,14 +6,15 @@ e uma lista de atuadores
 
 import math
 import numpy
-from datetime import datetime
+import datetime
 import matplotlib.pyplot as plt
+import device
 
 class Room():
 
     def __init__(self):
         self.__nome = ''
-        #self.__timerange = datetime.time(0, 0, 0, 0)
+        self.__timerange = datetime.time(0, 0, 0, 0)
 
         self.__sensorDta = [[], [], [], [], [], [],
                             [], [], [], [], [], [],
@@ -130,5 +131,7 @@ class Room():
         ##plt.plot(somInput_S[22], 'ro')
         plt.show()
 
+    def getTimeRange(self):
+        return self.__timerange
 
 
