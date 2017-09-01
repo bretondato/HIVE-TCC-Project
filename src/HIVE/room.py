@@ -6,11 +6,14 @@ e uma lista de atuadores
 
 import math
 import numpy
+from datetime import datetime
+import matplotlib.pyplot as plt
 
 class Room():
 
     def __init__(self):
         self.__nome = ''
+        #self.__timerange = datetime.time(0, 0, 0, 0)
 
         self.__sensorDta = [[], [], [], [], [], [],
                             [], [], [], [], [], [],
@@ -28,8 +31,78 @@ class Room():
         self.__nome = name
 
 
-    def setSensorsDta(self, sensorsDta):
-        self.__sensorDta = sensorsDta
+    def setSensorsDta(self, lines, i):
+        if lines[i][12] + lines[i][13] == '00':
+            self.__sensorDta[0].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '01':
+            self.__sensorDta[1].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '02':
+            self.__sensorDta[2].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '03':
+            self.__sensorDta[3].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '04':
+            self.__sensorDta[4].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '06':
+            self.__sensorDta[5].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '07':
+            self.__sensorDta[6].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '08':
+            self.__sensorDta[7].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '09':
+            self.__sensorDta[8].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '10':
+            self.__sensorDta[9].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '11':
+            self.__sensorDta[10].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '12':
+            self.__sensorDta[11].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '13':
+            self.__sensorDta[12].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '14':
+            self.__sensorDta[13].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '15':
+            self.__sensorDta[14].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '16':
+            self.__sensorDta[15].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '17':
+            self.__sensorDta[16].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '18':
+            self.__sensorDta[17].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '19':
+            self.__sensorDta[18].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '20':
+            self.__sensorDta[19].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '21':
+            self.__sensorDta[20].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '22':
+            self.__sensorDta[21].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        if lines[i][12] + lines[i][13] == '23':
+            self.__sensorDta[22].append(lines[i][49] + lines[i][50] + lines[i][51])
+
+        print(self.__nome)
+        print(self.__sensorDta)
 
 
     def setActuatorsDta(self, actuatorsDta):
@@ -47,6 +120,15 @@ class Room():
     def getActuators(self):
         return self.__actuatorsDta
 
+    def printData(self, time):
+
+        for i in range(0, len(self.__sensorDta)):
+            print("i[" + str(i) + "]:")
+            print(self.__sensorDta[i])
+
+        plt.plot(self.__sensorDta[time], 'ro')
+        ##plt.plot(somInput_S[22], 'ro')
+        plt.show()
 
 
 
