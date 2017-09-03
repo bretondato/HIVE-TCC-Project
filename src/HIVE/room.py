@@ -10,22 +10,12 @@ import datetime
 import matplotlib.pyplot as plt
 import device
 
+
 class Room():
 
     def __init__(self):
         self.__nome = ''
-        self.__timerange = datetime.time(0, 0, 0, 0)
-
-        self.__sensorDta = [[], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], []]
-
-        self.__actuatorsDta = [[], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], []]
-
+        self.__deviceList = []
 
 
     def setName(self, name):
@@ -121,6 +111,7 @@ class Room():
     def getActuators(self):
         return self.__actuatorsDta
 
+
     def printData(self, time):
 
         for i in range(0, len(self.__sensorDta)):
@@ -131,7 +122,15 @@ class Room():
         ##plt.plot(somInput_S[22], 'ro')
         plt.show()
 
+
     def getTimeRange(self):
         return self.__timerange
+
+    def setDeviceList(self, dta):
+        self.__deviceList.append(dta)
+
+    def getDeviceList(self):
+        return self.__deviceList
+
 
 

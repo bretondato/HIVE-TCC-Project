@@ -4,6 +4,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import room
+import device
 
 app = Flask(__name__)
 
@@ -92,42 +93,36 @@ def somInBuilder(lines, i, somInput):
 
 if __name__ == '__main__':
     #app.run()
-    f = open('1-4-2005-RAW.data', 'r')
+    f = open('1-3-2005-RAW.data', 'r')
     #f = open('2-6-2005-RAW.data', 'r')
     lines = f.readlines()
+    ss = np.ndarray(shape=(0, 23))
+    Room_List = []
 
-    somInput_i = [[], [], [], [], [], [],
-                [], [], [], [], [], [],
-                [], [], [], [], [], [],
-                [], [], [], [], [], []]
+    somInput_i = []
 
     n = 3333
     print(lines[12][23])
     print(lines[12][12] + lines[12][13])
+    print(lines[12][34] + lines[12][35])
+
     # print(somInput[12])
+    id = "id_"
 
-    i = room.Room()
-    s = room.Room()
-    a = room.Room()
-    c = room.Room()
-    v = room.Room()
-    b = room.Room()
 
-    for u in range(0, len(lines) - 2):
 
-        if (lines[u][23] == 'i'):
+    for u in range(2, len(lines) - 2):
+        room_Reader = lines[u][23]
 
-            if i.getName() == '':
-                i.setName(lines[u][23])
-            else:
-                pass
+        if room_Reader not in Room_List:
+            r = room.Room()
+            r.setName(room_Reader)
+            Room_List.append(r.getName())
 
-            #i = room.Room()
-            #i.setName(lines[u][23])
-            #i.setSensorsDta(lines, u)
-            #somInBuilder(lines, i, somInput_i)
-            pass
-
+        """
+         if (lines[u][23] == 'i'):
+            
+           
 
         if (lines[u][23] == 'S'):
             if s.getName() == '':
@@ -135,11 +130,15 @@ if __name__ == '__main__':
             else:
                 pass
 
-            #s = room.Room()
-            #s.setName(lines[u][23])
-            #s.setSensorsDta(lines, u)
-            #somInBuilder(lines, u, somInput)
-            pass
+            dev = (lines[u][34] + lines[u][35])
+
+            if dev not in device_list:
+                device_list.append(dev)
+                dvce = device.Device()
+                dvce.setId(dev)
+                s.setDeviceList(dvce.getId())
+            else:
+                pass
 
         if (lines[u][23] == 'a'):
             if a.getName() == '':
@@ -147,11 +146,15 @@ if __name__ == '__main__':
             else:
                 pass
 
-            #a = room.Room()
-            #a.setName(lines[u][23])
-            #a.setSensorsDta(lines, u)
-            #somInBuilder(lines, u, somInput)
-            somInBuilder(lines, u, somInput_i)
+            dev = (lines[u][34] + lines[u][35])
+
+            if dev not in device_list:
+                device_list.append(dev)
+                dvce = device.Device()
+                dvce.setId(dev)
+                a.setDeviceList(dvce.getId())
+            else:
+                pass
 
         if (lines[u][23] == 'c'):
             if c.getName() == '':
@@ -159,11 +162,15 @@ if __name__ == '__main__':
             else:
                 pass
 
-            #c = room.Room()
-            #c.setName(lines[u][23])
-            #c.setSensorsDta(lines, u)
-            #somInBuilder(lines, u, somInput)
-            pass
+            dev = (lines[u][34] + lines[u][35])
+
+            if dev not in device_list:
+                device_list.append(dev)
+                dvce = device.Device()
+                dvce.setId(dev)
+                c.setDeviceList(dvce.getId())
+            else:
+                pass
 
         if (lines[u][23] == 'V'):
             if v.getName() == '':
@@ -171,11 +178,15 @@ if __name__ == '__main__':
             else:
                 pass
 
-            #v = room.Room()
-            #v.setName(lines[u][23])
-            #v.setSensorsDta(lines, u)
-            #somInBuilder(lines, u, somInput)
-            pass
+            dev = (lines[u][34] + lines[u][35])
+
+            if dev not in device_list:
+                device_list.append(dev)
+                dvce = device.Device()
+                dvce.setId(dev)
+                v.setDeviceList(dvce.getId())
+            else:
+                pass
 
         if (lines[u][23] == 'b'):
             if b.getName() == '':
@@ -183,15 +194,16 @@ if __name__ == '__main__':
             else:
                 pass
 
-            #b = room.Room()
-            #b.setName(lines[u][23])
-            #b.setSensorsDta(lines, u)
-            #somInBuilder(lines, u, somInput)
-            pass
+            dev = (lines[u][34] + lines[u][35])
+
+            if dev not in device_list:
+                device_list.append(dev)
+                dvce = device.Device()
+                dvce.setId(dev)
+                b.setDeviceList(dvce.getId())
+            else:
+                pass
+            """
 
 
-    #i.printData()
-    print(somInput_i)
-    print(i.getTimeRange())
-    print(i.getName())
-
+    print(Room_List)
