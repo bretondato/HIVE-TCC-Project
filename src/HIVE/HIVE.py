@@ -138,14 +138,14 @@ if __name__ == '__main__':
                         #s.setValue(value)
                         #s.setTimeS(time)
                         #j.setEventlist(s)
-                        passw
+                        pass
                     else:
                         e = device.Actuator()
                         e.setState(state)
                         e.setTimeA(time)
                         j.setEventlist(e)
 
-
+    """
     for i in Room_List:
         print(i.getName())
         for j in i.getDeviceList():
@@ -155,7 +155,7 @@ if __name__ == '__main__':
                 print(k.getState())
                 #print(k.getTimeS())
                 print()
-
+    """
 
 
 
