@@ -265,5 +265,4 @@ for i, m in enumerate(mapped):
     plt.text(m[1], m[0], count[i], ha='center', va='center',
              bbox=dict(facecolor='white', alpha=0.5, lw=0))
 
-print(count)
 plt.show()
