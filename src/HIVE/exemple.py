@@ -8,6 +8,7 @@ import datetime
 import SOM_TNSRFLW as som
 from collections import Counter
 from scipy import spatial
+import pylab
 
 filenames = ['1-3-2005-RAW.data', '1-4-2005-RAW.data', '1-5-2005-RAW.data', '1-6-2005-RAW.data', '1-7-2005-RAW.data', '1-8-2005-RAW.data',
              '1-9-2005-RAW.data', '1-10-2005-RAW.data', '1-11-2005-RAW.data', '1-12-2005-RAW.data', '1-13-2005-RAW.data', '1-14-2005-RAW.data',
@@ -85,30 +86,17 @@ for i, w in enumerate(eventsd):
 
     ev = []
 """
-
-
-
-print("event t", eventst)
-print("event d", eventsd)
-print("Som Input", som_in)
-
-
 som = som.SOM(2, 2, 2, 100)
 som.train(som_in)
-
 image_grid = som.get_centroids()
-
 mapped = som.map_vects(som_in)
-#print(mapped)
-#print(len(mapped))
-#print(len(som_in))
-#print(image_grid)
+
 fr = []
 
-g1 = []
-g2 = []
-g3 = []
-g4 = []
+clus1 = []
+clus2 = []
+clus3 = []
+clus4 = []
 
 
 for i, m in enumerate(mapped):
@@ -117,39 +105,38 @@ for i, m in enumerate(mapped):
     count = dict(count)
 
     if list(m) == [0, 0]:
-        g1.append(som_in[i])
+        clus1.append(som_in[i])
     if list(m) == [0, 1]:
-        g2.append(som_in[i])
+        clus2.append(som_in[i])
     if list(m) == [1, 0]:
-        g3.append(som_in[i])
+        clus3.append(som_in[i])
     if list(m) == [1, 1]:
-        g4.append(som_in[i])
+        clus4.append(som_in[i])
 
 
-g1 = np.array(g1)
-g2 = np.array(g2)
-g3 = np.array(g3)
-g4 = np.array(g4)
+clus1 = np.array(clus1)
+clus2 = np.array(clus2)
+clus3 = np.array(clus3)
+clus4 = np.array(clus4)
 
-d1 = np.sqrt(np.add(((g1[:, [0]] - image_grid[0][0])**2), ((g1[:, [1]] - image_grid[0][1])**2)))
+#d1 = np.sqrt(np.add(((g1[:, [0]] - image_grid[0][0])**2), ((g1[:, [1]] - image_grid[0][1])**2)))
 
 #print("C1", ((g1[:, [0]] - image_grid[0][0])**2))
 
-#euclidian_list = [(spatial.distance.euclidean(, KEY_PERT), i[1]) for i in DB_PERT]
+
+euclidian_list1 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))), coord) for coord in clus1]
+
+euclidian_list2 = [(spatial.distance.euclidean(coord, list(image_grid[0][1]))) for coord in clus2]
+
+euclidian_list3 = [(spatial.distance.euclidean(coord, list(image_grid[1][0]))) for coord in clus3]
+
+euclidian_list4 = [(spatial.distance.euclidean(coord, list(image_grid[1][1]))) for coord in clus4]
 
 
-print(count)
-print("G1: ", np.array(g1))
-print("G1: ", np.array(g1)[:,[0]])
-print("G1: ", np.array(g1)[:,[1]])
+#mu = (np.mean(euclidian_list1[:, 0]))
+#std = np.std(euclidian_list1[0])
 
-print("G2: ", np.array(g2))
-
-print("G3: ", np.array(g3))
-
-print("G4: ", np.array(g4))
-
-print("D1: ", d1)
+#pdfClus1 = pylab.normpdf(euclidian_list1, mu, std)
 
 plt.subplot(221)
 for i, m in enumerate(som_in):
@@ -162,8 +149,24 @@ for i in range(0, len(image_grid)):
     for j in range(0, len(image_grid[i])):
         plt.plot(image_grid[i][j][1], image_grid[i][j][0], 'bo')
 
-#plt.plot(som_in, 'ro')
 
-print("Cent", image_grid)
-print("Mapped: ", mapped)
+#print("Som Input", som_in)
+#print("G1: ", clus1)
+#print("Centroids", image_grid[0][0])
+#print(image_grid)
+#print("Mapped: ", mapped)
+
+eu = euclidian_list1[:, [0]]
+print("Euclidian List Cluster 1: ", euclidian_list1)
+print("Euclidian distance data 1: ", eu)
+print("tamanho: ", len(euclidian_list1))
+
+
+#print("Media do cluster 1:", mu)
+#print("Desvio Padrao cluster 1:", std)
+#pdfClus1 = (1/pdfClus1)
+#pdfClus1.sort()
+#print("Distribuição Normal Cluster 1:", pdfClus1)
+#print("tamanho:", len(pdfClus1))
+
 plt.show()
