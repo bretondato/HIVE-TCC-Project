@@ -41,7 +41,7 @@ for i in filedata.values():
     lines = i.readlines()
     #print(lines)
     for u in range(2, len(lines) - 2):
-        if lines[u][23] == 'i':
+        if lines[u][23] == 'a':
             # print(lines)
             value = int(lines[u][49] + lines[u][50] + lines[u][51])
             date = lines[u][12:20]
@@ -86,7 +86,7 @@ for i, w in enumerate(eventsd):
 
     ev = []
 """
-som = som.SOM(2, 3, 2, 100)
+som = som.SOM(2, 2, 2, 100)
 som.train(som_in)
 image_grid = som.get_centroids()
 mapped = som.map_vects(som_in)
@@ -123,14 +123,20 @@ clus4 = np.array(clus4)
 
 #print("C1", ((g1[:, [0]] - image_grid[0][0])**2))
 
+#print(image_grid[0][0])
+#print(image_grid[0][1])
+#print(image_grid[1][0])
+#print(image_grid[1][1])
 
 euclidian_list1 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))), coord) for coord in clus1]
 
-euclidian_list2 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))), coord) for coord in clus2]
+euclidian_list2 = [((spatial.distance.euclidean(coord, list(image_grid[0][1]))), coord) for coord in clus2]
 
-euclidian_list3 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))), coord) for coord in clus3]
+euclidian_list3 = [((spatial.distance.euclidean(coord, list(image_grid[1][0]))), coord) for coord in clus3]
 
-euclidian_list4 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))), coord) for coord in clus4]
+euclidian_list4 = [((spatial.distance.euclidean(coord, list(image_grid[1][1]))), coord) for coord in clus4]
+
+
 
 
 #euclidian_list1.sort()
@@ -138,19 +144,26 @@ euclidian_list4 = [((spatial.distance.euclidean(coord, list(image_grid[0][0]))),
 #mu = (np.mean(euclidian_list1[:, 0]))
 #std = np.std(euclidian_list1[0])
 
-#pdfClus1 = pylab.normpdf(euclidian_list1, mu, std)
 
 mu = 0.0000
+std = []
 
-#std = []
 for i, m in enumerate(euclidian_list2):
     e = m[0]
     mu += e
-#    std.append(e)
+    std.append(e)
 
 mu = mu / len(euclidian_list2)
-#stdt = np.std(std)
+stdt = np.std(std)
 
+#pdfClus2 = [(pylab.normpdf(m[0], mu, stdt), (m[1][1], m[1][0])) for i,m in enumerate(euclidian_list2)]
+
+
+#for i, m in enumerate(euclidian_list2):
+#    print("distance:", m[0])
+#    print("Median: ", mu)
+#    print("Standart: ", stdt)
+#    #print(pylab.normpdf(m[0], mu, stdt))
 
 plt.subplot(221)
 for i, m in enumerate(som_in):
@@ -165,12 +178,14 @@ for i in range(0, len(image_grid)):
 
 plt.subplot(221)
 for i, m in enumerate(euclidian_list2):
-    print(m[0])
+    #print(m[0])
     #print(m[1][0])
     #print(m[1][1])
-    if m[0] > mu:
+    if m[0] > (mu+stdt):
         plt.plot(m[1][1], m[1][0], 'go')
 
+#plt.plot(736629.98291666666, 6.9444417022168636e-05, 'go')
+#plt.plot(736628.564224537, 0.0027893518563359976, 'go')
 
 #print("Som Input", som_in)
 #print("G1: ", clus1)
@@ -180,14 +195,12 @@ for i, m in enumerate(euclidian_list2):
 
 
 #print("Euclidian List Cluster 1: ", euclidian_list1)
-print("Euclidian List Cluster 1: ", euclidian_list2)
+print("Euclidian List Cluster 2: ", euclidian_list2)
 print("tamanho: ", len(euclidian_list2))
-
-print("Media do cluster 1:", mu)
-#print("Desvio Padrao cluster 1:", stdt)
+print("Media do cluster 2:", mu)
+print("Desvio Padrao cluster 2:", stdt)
 #pdfClus1 = (1/pdfClus1)
-#pdfClus1.sort()
-#print("Distribuição Normal Cluster 1:", pdfClus1)
+#pdfClus2.sort()
+#print("Distribuição Normal Cluster 2:", pdfClus2)
 #print("tamanho:", len(pdfClus1))
-
 plt.show()
