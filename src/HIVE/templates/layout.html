@@ -2,7 +2,32 @@
 {% block body %}
 
 <center>
+<div class="teste">
+    <div class="craw_parans">
+        <form  action="{{ url_for('setData') }}" method="post" class="craw_form">
+            <label>Quantidade de Neuronios</label>
+            <input type="number" class="param" name="neuQuant">
 
+            <label>Quantidade de iterações</label>
+            <input type="number" class="param" name="itQuant">
+
+             <label>Dia Inicial</label>
+            <input type="number" class="param" name="InitD">
+
+            <label>Dia final</label>
+            <input type="number" class="param" name="EndD">
+
+            <label>Valor de limiar</label>
+            <input type="number" class="param" name="limt">
+
+            <label>comodo</label>
+            <input type="text" class="param" name="room">
+
+
+            <input type="image" src="{{url_for('static', filename='iOS_Icons/icons8-maintenance.png') }}" class="build_icon" height="50" width="50" type="submit" value="Go">
+        </form>
+    </div>
+</div>
 </center>
 
 {% endblock %}

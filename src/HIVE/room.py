@@ -1,35 +1,24 @@
 """
-Esta classe representa determinado comodo, possui uma lista de sensores 
+Esta classe representa determinado comodo, possui uma lista de sensores
 e uma lista de atuadores
-
 """
 
 import math
 import numpy
-from datetime import datetime
+import datetime
 import matplotlib.pyplot as plt
+import device
+
 
 class Room():
 
     def __init__(self):
         self.__nome = ''
-        #self.__timerange = datetime.time(0, 0, 0, 0)
-
-        self.__sensorDta = [[], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], []]
-
-        self.__actuatorsDta = [[], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], [],
-                            [], [], [], [], [], []]
-
-
+        self.__device_name_list = []
+        self.__deviceList = []
 
     def setName(self, name):
         self.__nome = name
-
 
     def setSensorsDta(self, lines, i):
         if lines[i][12] + lines[i][13] == '00':
@@ -104,18 +93,14 @@ class Room():
         print(self.__nome)
         print(self.__sensorDta)
 
-
     def setActuatorsDta(self, actuatorsDta):
         self.__actuatorsDta = actuatorsDta
 
-
     def getName(self):
-        return self.__nome
-
+     return self.__nome
 
     def getSensorsDta(self):
         return self.__sensorDta
-
 
     def getActuators(self):
         return self.__actuatorsDta
@@ -130,5 +115,17 @@ class Room():
         ##plt.plot(somInput_S[22], 'ro')
         plt.show()
 
+    def setDeviceList(self, dta):
+        self.__deviceList.append(dta)
 
+    def getDeviceList(self):
+        return self.__deviceList
 
+    def getDeviceListAtIndex(self, index):
+        return self.__deviceList[index]
+
+    def setDeviceNameList(self, deviceId):
+        self.__device_name_list.append(deviceId)
+
+    def getDeviceNameList(self):
+        return self.__device_name_list
